@@ -1,3 +1,8 @@
+def remove_suffix(input_string, suffix):
+    if suffix and input_string.endswith(suffix):
+        return input_string[:-len(suffix)]
+    return input_string
+
 CHARACTER_VALUES = {
     200: "🫂",
     50: "💖",
@@ -28,7 +33,7 @@ def to_bottom(text: str) -> str:
 
 def from_bottom(text: str) -> str:
     out = bytearray()
-    text = text.strip().removesuffix(SECTION_SEPERATOR)
+    text = remove_suffix(text.strip(), SECTION_SEPERATOR)
 
     if not all(c in CHARACTER_VALUES.values() for c in text.replace(SECTION_SEPERATOR, '')):
         raise TypeError(f'Invalid bottom text: {text}')
